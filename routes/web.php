@@ -16,8 +16,8 @@ use App\Http\Controllers\PegawaiController;
 */
 
 Route::get('/', function () {
-    return view('home', ['title' => 'Home']);
-})->name('home');
+    return view('dashboard', ['title' => 'Dashboard']);
+})->name('dashboard');
 
 Route::get('register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
 Route::post('register', [App\Http\Controllers\UserController::class, 'register_action'])->name('register.action');
@@ -27,4 +27,5 @@ Route::get('password', [App\Http\Controllers\UserController::class, 'password'])
 Route::post('password', [App\Http\Controllers\UserController::class, 'password_action'])->name('password.action');
 Route::get('logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 
+Route::resource('pegawai', PegawaiController::class);
 //Route::resource('pegawai', [App\Http\Controllers\PegawaiController::class]);
