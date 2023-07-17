@@ -233,7 +233,7 @@
                 <label>Password <span class="text-danger">*</span></label>
                 <input class="form-control" type="password" name="password" />
             </div>
-            <div class="mb-3">
+            <div class="mb-6">
                 <button class="btn btn-primary">Login</button>
                 <a class="btn btn-danger" href="{{ route('home') }}">Back</a>
             </div>
