@@ -1,13 +1,10 @@
-@extends('app')
-@section('content')
-@auth
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" , initial-scale="1" />
     <title>Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -72,6 +69,8 @@
         width: 80%;
         height: 100%;
         text-align: center;
+        display: flex;
+        flex-direction: column;
       }
 
       .container img {
@@ -91,6 +90,7 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         z-index: 1;
         text-align: left;
+        margin-bottom: 20px;
       }
 
       .nav {
@@ -112,49 +112,49 @@
         text-align: center;
       }
 
-      .content {
-        position: relative;
-        margin-top: 10vh;
-        min-height: 80vh;
-        width: 50%;
-        height: 300px;
-        background: white;
-      }
-
-      .cards {
-        padding: 15px 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-
-      .card {
-        background: white;
-        width: 840px;
-        height: 495px;
-        opacity: 100%;
-        display: flex;
-        align-items: center;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-          0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-
-      .icon {
-        color: gray;
-        font-size: 40px;
-      }
-
       i:hover {
         color: #0f3965;
       }
 
-      .img {
-        max-width: 500%;
+      .userprofile {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #d9d9d9;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-family: "Inter", sans-serif;
+        font-weight: normal;
+        font-style: normal;
       }
-      .box {
-        font-size: 2.5em;
+
+      .profile-picture {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin: 0 auto;
+        display: block;
+        overflow: hidden;
       }
+
+      .profile-picture img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-name {
+        text-align: center;
+        font-size: 24px;
+      }
+
+      .profile-details {
+        margin-top: 20px;
+      }
+
       @media screen and (max-width: 1050px) {
         .sidebar ul li {
           font-size: 18px;
@@ -162,6 +162,21 @@
         .img {
           max-width: 100%;
         }
+      }
+      .table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid black;
+      }
+
+      .table td,
+      .table th {
+        border: 1px solid black;
+        padding: 8px;
+      }
+
+      .table th {
+        background-color: #f2f2f2;
       }
 
       @media screen and (max-width: 940px) {
@@ -180,6 +195,9 @@
         .container {
           margin-left: 10vw;
         }
+        .userprofile {
+          padding: 20px;
+        }
       }
 
       @media screen and (max-width: 536px) {
@@ -192,6 +210,9 @@
 
         .sidebar ul li i {
           font-size: 20px;
+        }
+        .userprofile {
+          padding: 15px;
         }
       }
     </style>
@@ -211,55 +232,68 @@
         <li>
           <i class="fa-solid fa-user-tie">&nbsp;&nbsp;</i><span>AKP</span>
         </li>
-       </ul>
+      </ul>
     </div>
 
     <div class="container">
       <div class="header">
         <div class="nav">
           <div class="user">
-            <a href="{{ route('logout') }}" class="btn"><i class="fa-solid fa-user"></i></a>
+            <a href="#" class="btn"><i class="fa-solid fa-user"></i></a>
           </div>
         </div>
       </div>
-      <div class="col-lg-11 col-6 mx-auto">
-        <div class="mx-auto">
-          <div class="card-body">
-            <div class="d-flex justify-content-center align-items-center">
-              <div class="mr-3">
-                <div class="d-flex align-items-center">
-                  <img
-                    src="{{asset('img/BINBOT1.png')}}"
-                    style="width: 300px; height: 460px"
-                  />
-                  <div>
-                    <h4
-                      style="
-                        font-family: 'Montserrat', sans-serif;
-                        font-size: 2.2rem;
-                        font-weight: bold;
-                        color: black;
-                      "
-                    >
-                      SELAMAT DATANG
-                    </h4>
-                    <h4
-                      style="
-                        font-family: 'Montserrat', sans-serif;
-                        font-size: 1rem;
-                        color: black;
-                      "
-                    >
-                    <b>{{ Auth::user()->name }}</b>
-                    </h4>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div class="content">
+        <div class="userprofile">
+          <div class="profile-picture">
+            <img src="Niar.jpg" alt="Profile Picture" />
+            <figcaption>Niar Fujita Simbolon</figcaption>
+          </div>
+
+          <div class="profile-details">
+            <table class="table table-condensed detail-view">
+              <thead>
+                <tr>
+                  <td><b>NIP</b></td>
+                  <td>************</td>
+                </tr>
+                <tr>
+                  <td><b>Nama</b></td>
+                  <td>Niar Fujita Simbolon</td>
+                </tr>
+                <tr>
+                  <td><b>Golongan</b></td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><b>Pangkat</b></td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><b>Jabatan</b></td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><b>Agama</b></td>
+                  <td>Kristen Protestan</td>
+                </tr>
+                <tr>
+                  <td><b>Jenis Kelamin</b></td>
+                  <td>Perempuan</td>
+                </tr>
+                <tr>
+                  <td><b>No. Telp</b></td>
+                  <td>082246099151</td>
+                </tr>
+                <tr>
+                  <td><b>Email</b></td>
+                  <td>niarfujita1@gmail.com</td>
+                </tr>
+              </thead>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </body>
 </html>
-@endauth

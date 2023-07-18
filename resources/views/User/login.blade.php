@@ -203,7 +203,9 @@
     <div class="container">
       <div class="card">
         <div class="icon">
-          <img src="{{asset('img/Logo.png')}}" />
+          <a href="https://www.kemendag.go.id/">
+            <img src="{{asset('img/Logo.png')}}" alt="Logo" />
+          </a>          
         </div>
       </div>
       <div class="main">
